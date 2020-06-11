@@ -1,0 +1,52 @@
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" class="employees">
+  <mat-list fxFlex="100%" fxFlex.gt-sm="20%">
+    <mat-list-item _ngFor='let employee of employees | async'>
+      <a (click)="onSelectEmployee(employee.id)">
+        {{employee.name}}
+      </a>
+    </mat-list-item>
+  </mat-list>
+  <mat-divider fxShow="false" fxShow.gt-sm _[_vertical]="true"></mat-divider>
+  <mat-divider fxShow="true" fxShow.gt-sm="false" _[_vertical]="false"></mat-divider>
+  <div fxFlex="100%" fxFlex.gt-sm="70%" *ngIf="!editEmployee" class="employee-container">
+    <h3>{{currentEmployee.name}}</h3>
+    <p>
+      {{currentEmployee.dept}}
+    </p>
+    <p>
+      {{currentEmployee.post}}
+    </p>
+    <p>
+      {{currentEmployee.years}}
+    </p>
+    <p>
+      {{currentEmployee.score}}
+    </p>
+    <div fxLayout="row" fxLayoutAlign="space-between center" >
+      <button mat-raised-button color="primary" (click)="onEditEmployee()" *ngIf="employeeSelected()">Edit</button>
+      <button mat-raised-button color="warn" (click)="onDeleteEmployee()" *ngIf="employeeSelected()">Delete</button>
+      <button mat-raised-button color="primary" (click)="onNewEmployee()">New Employee</button>
+    </div>
+  </div>
+  <div fxFlex="100%" fxFlex.gt-sm="70%" *ngIf="editEmployee" class="form-container">
+    <form [formGroup]="editEmployeeForm" (ngSubmit)="updateEmployee()">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Name" formControlName="name">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Department" formControlName="dept">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Post" formControlName="post">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Years of Service" formControlName="years">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Appraisal Score" formControlName="score">
+      </mat-form-field>
+      
+      <button mat-raised-button color="primary">Update</button>
+    </form>
+  </div>
+</div>
