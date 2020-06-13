@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 form div.input-field input{
-    padding-left: 15px !important;
+    padding-left: 25px;
     color: #25a297;
 }
 
@@ -52,7 +52,7 @@ a.action-btn:hover{
 }
 
 body {
-    background-color: #083045;
+    background-image: linear-gradient(to bottom,#000428,#004e92);
 }
 body::-webkit-scrollbar {
     display: none;
